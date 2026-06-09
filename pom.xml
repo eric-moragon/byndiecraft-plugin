@@ -17,6 +17,10 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
+
+        <!-- Plugin.yml placeholders -->
+        <name>Byndiecraft</name>
+        <main>com.bynder.byndiecraft.ByndiecraftPlugin</main>
     </properties>
 
     <repositories>
@@ -59,6 +63,8 @@
 
     <build>
         <defaultGoal>clean package</defaultGoal>
+        <finalName>${project.artifactId}-${project.version}</finalName>
+
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
@@ -86,6 +92,11 @@
                 <version>3.3.1</version>
                 <configuration>
                     <encoding>UTF-8</encoding>
+                    <!-- Disable Maven's default delimiter to avoid conflicts -->
+                    <useDefaultDelimiters>false</useDefaultDelimiters>
+                    <delimiters>
+                        <delimiter>${*}</delimiter>
+                    </delimiters>
                 </configuration>
             </plugin>
 

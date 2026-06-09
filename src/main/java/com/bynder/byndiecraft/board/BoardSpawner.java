@@ -52,6 +52,16 @@ public class BoardSpawner {
 
                 buildBoard(player, anchor, tickets);
 
+                // Teleport all online players to the board
+                Location tpTarget = anchor.clone().add(0, 0, 3);
+                tpTarget.setYaw(0);
+                tpTarget.setPitch(0);
+                for (Player online : Bukkit.getOnlinePlayers()) {
+                    online.teleport(tpTarget);
+                    online.sendMessage(Component.text("✓ Teleported to the Jira board!")
+                            .color(NamedTextColor.GREEN));
+                }
+
                 player.sendMessage(Component.text("✓ Board spawned with " + tickets.size() + " tickets!")
                         .color(NamedTextColor.GREEN));
                 player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);

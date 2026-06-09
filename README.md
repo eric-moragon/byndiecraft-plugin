@@ -18,20 +18,37 @@ Byndiecraft allows you to visualize and interact with your Jira board directly i
 
 ### Prerequisites
 
-- Java 17 or higher
+- Java 21 or higher (including Java 25!)
+- Maven 3.6+ or Gradle 8.x
 - Paper/Spigot 1.21 Minecraft server
 - Jira Cloud account with API access
 
 ### Installation
 
 1. **Build the plugin:**
+   
+   **Option A: Maven (Recommended for Java 25)**
+   ```bash
+   cd byndiecraft-plugin
+   mvn clean package
+   ```
+   Output: `target/byndiecraft-plugin-1.0.0-SNAPSHOT.jar`
+
+   **Option B: Gradle**
    ```bash
    cd byndiecraft-plugin
    ./gradlew build
    ```
+   Output: `build/libs/byndiecraft-plugin-1.0.0-SNAPSHOT.jar`
+
+   > **Note:** If you're on Java 25, use Maven (it has better Java 25 support). Gradle requires Java 21 to run. See [BUILD.md](BUILD.md) for details.
 
 2. **Copy to server:**
    ```bash
+   # Maven
+   cp target/byndiecraft-plugin-1.0.0-SNAPSHOT.jar /path/to/server/plugins/
+   
+   # Or Gradle
    cp build/libs/byndiecraft-plugin-1.0.0-SNAPSHOT.jar /path/to/server/plugins/
    ```
 
@@ -197,6 +214,32 @@ Minecraft Server (Paper)
 
 ### Enable Debug Mode
 Set `debug: true` in config.yml to see detailed logs.
+
+## 🔧 Building from Source
+
+### Maven (Recommended)
+```bash
+# Install Maven if needed
+sudo apt install maven  # Ubuntu/Debian
+brew install maven      # macOS
+
+# Build
+mvn clean package
+
+# Output
+target/byndiecraft-plugin-1.0.0-SNAPSHOT.jar
+```
+
+### Gradle
+```bash
+# Build
+./gradlew clean build
+
+# Output
+build/libs/byndiecraft-plugin-1.0.0-SNAPSHOT.jar
+```
+
+**Java 25 Users:** Maven works out-of-the-box on Java 25. Gradle requires Java 21 to run the build. See [BUILD.md](BUILD.md) for complete build instructions and [BUILD-ON-JAVA25.md](BUILD-ON-JAVA25.md) for Gradle workarounds.
 
 ## 🚀 Phase 2 Features (Roadmap)
 
